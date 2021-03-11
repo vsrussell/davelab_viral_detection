@@ -1,0 +1,14 @@
+{
+    "samples": [
+        {
+            "paths": {
+                "rna_bam": {
+                    "operation": "AND",
+                    "values": ["picard", "markduplicates", "rna"]
+                }
+            },
+            "sample_id": null,
+            "sample_name": null
+        }
+    ]
+}

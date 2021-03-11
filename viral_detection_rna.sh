@@ -22,10 +22,8 @@ SAMREADBYTES=$9
 
 
 #filter input bam and convert to fastqs
-
 samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped_to_masked_viral_STAR1.fastq -2 human_unmapped_to_masked_viral_STAR2.fastq -s human_unmapped_to_masked_viral_STARs.fastq
 
-#currently must account for singletons separately
 #STAR RUN for pairs
 STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.fastq human_unmapped_to_masked_viral_STAR2.fastq --runThreadN ${NTHREADS} --outFilterMismatchNmax ${MISMATCHNMAX} --outFilterMultimapNmax ${MULTIMAPNMAX} --limitOutSAMoneReadBytes ${SAMREADBYTES} --outFileNamePrefix ${OUT_PREF_PAIR}
 
