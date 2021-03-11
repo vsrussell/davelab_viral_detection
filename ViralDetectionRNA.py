@@ -3,7 +3,7 @@ from Modules import Module
 # Module created using CC_module_helper.py
 class ViralDetectionRNA(Module):
     def __init__(self, module_id, is_docker=False):
-        super(Viral_detection, self).__init__(module_id, is_docker)
+        super(ViralDetectionRNA, self).__init__(module_id, is_docker)
         # Add output keys here if needed
         self.output_keys = ["paired_viral_sam", "paired_viral_logf"]
 

@@ -1,0 +1,15 @@
+### STAR   --runMode genomeGenerate   --runThreadN 8   --genomeDir ./   --genomeFastaFiles ebv_masked_hg381.fa      --genomeSAindexNbases 7
+versionGenome	20201
+genomeFastaFiles	ebv_masked_hg381.fa 
+genomeSAindexNbases	7
+genomeChrBinNbits	18
+genomeSAsparseD	1
+sjdbOverhang	0
+sjdbFileChrStartEnd	- 
+sjdbGTFfile	-
+sjdbGTFchrPrefix	-
+sjdbGTFfeatureExon	exon
+sjdbGTFtagExonParentTranscript	transcript_id
+sjdbGTFtagExonParentGene	gene_id
+sjdbInsertSave	Basic
+genomeFileSizes	262144 1416949
