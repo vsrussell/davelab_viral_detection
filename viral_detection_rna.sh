@@ -30,7 +30,7 @@ STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.f
 #sort and index for idxstats
 samtools view -b ${OUT_PREF_PAIR}_Aligned.out.sam | samtools sort - > ${OUT_PREF_PAIR}_Aligned.sorted.out.bam 
 samtools index ${OUT_PREF_PAIR}_Aligned.sorted.out.bam
-samtools idxstats ${OUT_PREF_PAIR}_Aligned.sorted.out.bam > ${OUT_PREF_PAIR}_idxstats.txt
+samtools idxstats ${OUT_PREF_PAIR}_Aligned.sorted.out.bam > ${OUT_PREF_PAIR}idxstats.txt
 
 ls -ltr
 ls -ltr /data/viral_detection_rna/output/
