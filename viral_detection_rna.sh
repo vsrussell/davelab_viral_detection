@@ -28,9 +28,9 @@ samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped
 STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.fastq human_unmapped_to_masked_viral_STAR2.fastq --runThreadN ${NTHREADS} --outFilterMismatchNmax ${MISMATCHNMAX} --outFilterMultimapNmax ${MULTIMAPNMAX} --limitOutSAMoneReadBytes ${SAMREADBYTES} --outFileNamePrefix ${OUT_PREF_PAIR}
 
 #sort and index for idxstats
-samtools view -b ${OUT_PREF_PAIR}_Aligned.out.sam | samtools sort - > ${OUT_PREF_PAIR}_Aligned.sorted.out.bam 
-samtools index ${OUT_PREF_PAIR}_Aligned.sorted.out.bam
-samtools idxstats ${OUT_PREF_PAIR}_Aligned.sorted.out.bam > ${OUT_PREF_PAIR}idxstats.txt
+samtools view -b ${OUT_PREF_PAIR}Aligned.out.sam | samtools sort - > ${OUT_PREF_PAIR}Aligned.sorted.out.bam 
+samtools index ${OUT_PREF_PAIR}Aligned.sorted.out.bam
+samtools idxstats ${OUT_PREF_PAIR}Aligned.sorted.out.bam > ${OUT_PREF_PAIR}idxstats.txt
 
 ls -ltr
 ls -ltr /data/viral_detection_rna/output/
