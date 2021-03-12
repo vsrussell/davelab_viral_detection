@@ -1,13 +1,9 @@
-### STAR   --runMode genomeGenerate      --runThreadN 1   --genomeDir ./   --genomeFastaFiles ../all_viral_masked.fa      --genomeSAindexNbases 7
-### GstrandBit 32
-versionGenome	2.7.4a
-genomeType	Full
-genomeFastaFiles	../all_viral_masked.fa 
+### STAR   --runMode genomeGenerate   --runThreadN 1   --genomeDir .   --genomeFastaFiles ../all_masked_virus.fa      --genomeSAindexNbases 7
+versionGenome	20201
+genomeFastaFiles	../all_masked_virus.fa 
 genomeSAindexNbases	7
 genomeChrBinNbits	18
 genomeSAsparseD	1
-genomeTransformType	None
-genomeTransformVCF	-
 sjdbOverhang	0
 sjdbFileChrStartEnd	- 
 sjdbGTFfile	-

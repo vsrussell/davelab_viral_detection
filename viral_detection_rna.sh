@@ -28,4 +28,4 @@ samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped
 STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.fastq human_unmapped_to_masked_viral_STAR2.fastq --runThreadN ${NTHREADS} --outFilterMismatchNmax ${MISMATCHNMAX} --outFilterMultimapNmax ${MULTIMAPNMAX} --limitOutSAMoneReadBytes ${SAMREADBYTES} --outFileNamePrefix ${OUT_PREF_PAIR}
 
 ls -ltr
-ls -ltr /data/viral_detection/output/
+ls -ltr /data/viral_detection_rna/output/
