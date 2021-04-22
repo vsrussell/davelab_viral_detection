@@ -24,4 +24,4 @@ samtools index ${OUT_PREF_PAIR}_aligned_sorted.bam
 samtools idxstats ${OUT_PREF_PAIR}_aligned_sorted.bam > ${OUT_PREF_PAIR}_idxstats.txt
 
 ls -ltr
-ls -ltr /data/viral_detection_dna/output/
+ls -ltr /data/viral_detection/output/
