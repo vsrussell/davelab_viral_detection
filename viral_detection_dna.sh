@@ -19,9 +19,9 @@ bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWA1.fas
 
 
 #sort and index for idxstats
-samtools view -b ${OUT_PREF_PAIR}_aligned.sam | samtools sort - > ${OUT_PREF_PAIR}_aligned_sorted.bam
-samtools index ${OUT_PREF_PAIR}_aligned_sorted.bam
-samtools idxstats ${OUT_PREF_PAIR}_aligned_sorted.bam > ${OUT_PREF_PAIR}_idxstats.txt
+samtools view -b ${OUT_PREF_PAIR}_aligned.sam | samtools sort - > ${OUT_PREF_PAIR}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_log.txt
+samtools index ${OUT_PREF_PAIR}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_log.txt
+samtools idxstats ${OUT_PREF_PAIR}_aligned_sorted.bam > ${OUT_PREF_PAIR}_idxstats.txt 2>&1 | tee -a ${OUT_PREF_PAIR}_log.txt
 
 ls -ltr 2>&1 | tee -a ${OUT_PREF_PAIR}_log.txt
 ls -ltr /data/viral_detection/output/
