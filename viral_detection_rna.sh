@@ -25,7 +25,7 @@ SAMREADBYTES=$9
 samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped_to_masked_viral_STAR1.fastq -2 human_unmapped_to_masked_viral_STAR2.fastq -s human_unmapped_to_masked_viral_STARs.fastq 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
 
 #STAR RUN for pairs
-STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.fastq human_unmapped_to_masked_viral_STAR2.fastq --runThreadN ${NTHREADS} --outFilterMismatchNmax ${MISMATCHNMAX} --outFilterMultimapNmax ${MULTIMAPNMAX} --limitOutSAMoneReadBytes ${SAMREADBYTES} --outFileNamePrefix ${OUT_PREF_PAIR}STAR 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
+STAR --genomeDir ${REF_IDX} --readFilesIn human_unmapped_to_masked_viral_STAR1.fastq human_unmapped_to_masked_viral_STAR2.fastq --runThreadN ${NTHREADS} --outFilterMismatchNmax ${MISMATCHNMAX} --outFilterMultimapNmax ${MULTIMAPNMAX} --limitOutSAMoneReadBytes ${SAMREADBYTES} --outFileNamePrefix ${OUT_PREF_PAIR}STAR_ 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
 
 #sort and index for idxstats
 samtools view -b ${OUT_PREF_PAIR}Aligned.out.sam | samtools sort - > ${OUT_PREF_PAIR}Aligned.sorted.out.bam 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
