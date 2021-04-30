@@ -19,7 +19,7 @@ bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWA1.fas
 bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWAs.fastq -o ${OUT_PREF}_single_aligned.sam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
 
 #convert to bam before sorting
-samtools view -b ${OUT_PREF}_paired_aligned.sam > ${OUT_PREF}_paired_aligned.sam.bam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
+samtools view -b ${OUT_PREF}_paired_aligned.sam > ${OUT_PREF}_paired_aligned.bam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
 samtools view -b ${OUT_PREF}_single_aligned.sam > ${OUT_PREF}_single_aligned.bam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
 
 #concatenate bam files
