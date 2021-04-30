@@ -12,15 +12,24 @@ EXCLUDE_FLAG=$5
 OUT_PREF_PAIR=$6 #ouput naming
 
 #filter input bam and convert to fastqs
-samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped_dna_to_masked_viral_BWA1.fastq -2 human_unmapped_dna_to_masked_viral_BWA2.fastq -s /dev/null 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+samtools fastq -f ${INCLUDE_FLAG} -F ${EXCLUDE_FLAG} ${IN_BAM} -1 human_unmapped_dna_to_masked_viral_BWA1.fastq -2 human_unmapped_dna_to_masked_viral_BWA2.fastq -s human_unmapped_dna_to_masked_viral_BWAs.fastq 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
 
 #run bwa
-bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWA1.fastq human_unmapped_dna_to_masked_viral_BWA2.fastq -o ${OUT_PREF_PAIR}_aligned.sam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWA1.fastq human_unmapped_dna_to_masked_viral_BWA2.fastq -o ${OUT_PREF_PAIR}_aligned_paired.sam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+bwa mem -t ${NTHREADS} -M ${REF_IDX} human_unmapped_dna_to_masked_viral_BWAs.fastq -o ${OUT_PREF_PAIR}_aligned_singletons.sam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
 
+#convert to bam before sorting
+samtools view -b ${OUT_PREF_PAIR}_aligned_paired.sam > ${OUT_PREF_PAIR}_aligned_paired.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+samtools view -b ${OUT_PREF_PAIR}_aligned_singletons.sam > ${OUT_PREF_PAIR}_aligned_singletons.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
 
-#sort and index for idxstats
-samtools view -b ${OUT_PREF_PAIR}_aligned.sam | samtools sort - > ${OUT_PREF_PAIR}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+#concatenate bam files
+samtools cat ${OUT_PREF_PAIR}_aligned_paired.bam ${OUT_PREF_PAIR}_aligned_singletons.bam -o ${OUT_PREF_PAIR}_aligned.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+
+#sort and index merged paired and singleton alignments
+samtools sort ${OUT_PREF_PAIR}_aligned.bam > ${OUT_PREF_PAIR}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
 samtools index ${OUT_PREF_PAIR}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
+
+#idxstats for quantification
 samtools idxstats ${OUT_PREF_PAIR}_aligned_sorted.bam > ${OUT_PREF_PAIR}_idxstats.txt 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
 
 ls -ltr 2>&1 | tee -a ${OUT_PREF_PAIR}_all_log.txt
