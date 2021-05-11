@@ -33,4 +33,4 @@ samtools index ${OUT_PREF_PAIR}STAR_Aligned.sorted.out.bam 2>&1 | tee -a ${OUT_P
 samtools idxstats ${OUT_PREF_PAIR}STAR_Aligned.sorted.out.bam > ${OUT_PREF_PAIR}idxstats.txt 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
 
 ls -ltr 2>&1 | tee -a ${OUT_PREF_PAIR}all_log.txt
-ls -ltr /data/viral_detection_rna/output/
+ls -ltr /data/output/ | tee -a ${OUT_PREF_PAIR}all_log.txt
