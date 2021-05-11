@@ -27,6 +27,7 @@ samtools cat ${OUT_PREF}_paired_aligned.bam ${OUT_PREF}_single_aligned.bam -o ${
 
 #sort and index merged paired and singleton alignments
 samtools sort ${OUT_PREF}_aligned.bam > ${OUT_PREF}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
+wait
 samtools index ${OUT_PREF}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF}_all_log.txt
 wait
 
