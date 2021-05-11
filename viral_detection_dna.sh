@@ -4,7 +4,7 @@
 
 #viral detecton for viruses of interest (EBV, HIV, KSHV, HPV, HCV, HBV, HTLV, MPV) from sample dna sequencing 
 
-IN_BAM=$1 #pcr marked duplicates file from gs://analysis_results/${ANALYSIS_ID}/filter_chrom_reads__short_insert__dna/filter_chrom_reads__short_insert__dna_FilterChromReads_FilterLongInsertExonicReads.${DAVELAB_ID}.small_insert.bam
+IN_BAM=$1 #name sorted pcr marked duplicates file from gs://analysis_results/${ANALYSIS_ID}/filter_chrom_reads__short_insert__dna/filter_chrom_reads__short_insert__dna_FilterChromReads_FilterLongInsertExonicReads.${DAVELAB_ID}.small_insert.bam
 REF_IDX=$2 #intended use: Viral masked reference from VirDetect workflow index with bwa index
 NTHREADS=$3 #nr_cpus
 INCLUDE_FLAG=$4
@@ -33,4 +33,4 @@ samtools index ${OUT_PREF}_aligned_sorted.bam 2>&1 | tee -a ${OUT_PREF}_all_log.
 samtools idxstats ${OUT_PREF}_aligned_sorted.bam > ${OUT_PREF}_idxstats.txt 2>&1 | tee -a ${OUT_PREF}_all_log.txt
 
 ls -ltr 2>&1 | tee -a ${OUT_PREF}_all_log.txt
-ls -ltr /data/viral_detection/output/
+ls -ltr /data/output/ | tee -a ${OUT_PREF}_all_log.txt
