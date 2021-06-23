@@ -8,6 +8,10 @@
 require(tibble)
 
 #get command line arguments
+#input order must be 
+#1) tabbed file with sample ID's and their idxstat file directories
+#2) a viral fasta header to virus mapping .txt key 
+#3) defined output .txt file
 args = commandArgs(trailingOnly=TRUE)
 
 #get table of files
@@ -17,8 +21,6 @@ head(file_tbl)
 idxstats_key <- read.table(args[2], header=TRUE)
 #define output file
 output_file <- args[3]
-
-#**** need to remove "#" in reference names or will fail
 
 #set up output table
 final_table <- data.frame(matrix(ncol=length(file_tbl$samples) + 3,nrow=length(idxstats_key$rename), dimnames=list(NULL, c("abbrev_ref", "full_ref", "viral_type", file_tbl$samples))), check.names = FALSE)
@@ -37,7 +39,7 @@ for(i in 1:dim(file_tbl)[1]){
   tmp_file <- tmp_file[1:dim(tmp_file)[1]-1,]
   
   #loop through and add counts for each reference to final table
-  #ensure same number of references in key as in output
+  #ensure same number of references in key as in output table
   print(dim(tmp_file)[1])
   print(dim(final_table)[1])
   if(dim(tmp_file)[1] == dim(final_table)[1]){
@@ -48,7 +50,7 @@ for(i in 1:dim(file_tbl)[1]){
     }
   }
   else{
-    print("There are more or less references listed than there should be")
+    print("There are more or less references listed than there should be for idxstat result")
   }
 }
 
