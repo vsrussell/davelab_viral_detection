@@ -18,7 +18,7 @@ args = commandArgs(trailingOnly=TRUE)
 file_tbl <- read.table(args[1], header=TRUE)
 head(file_tbl)
 #read in reference key with shortened references
-idxstats_key <- read.table(args[2], header=TRUE)
+idxstats_key <- read.csv(args[2])
 #define output file
 output_file <- args[3]
 
