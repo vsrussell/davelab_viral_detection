@@ -11,7 +11,7 @@ require(tibble)
 #input order must be 
 #1) tabbed file with sample ID's and their idxstat file directories
 #2) a viral fasta header to virus mapping .txt key 
-#3) defined output .txt file
+#3) defined output .csv file
 args = commandArgs(trailingOnly=TRUE)
 
 #get table of files
