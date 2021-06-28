@@ -59,5 +59,5 @@ final_table$full_ref <- rownames(final_table)
 final_table <- final_table[,c("full_ref","abbrev_ref", "viral_type", file_tbl$samples)]
 
 #write to output
-write.table(final_table, output_file, row.names = FALSE)
+write.csv(final_table, output_file, row.names = FALSE, sep = ",")
 
